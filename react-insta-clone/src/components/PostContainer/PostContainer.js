@@ -1,16 +1,10 @@
 import React from 'react';
+import CommentsSection from '../CommentsSection/CommentsSection';
 
-class PostContainer extends React.Component {
-    constructor(props){
-        super(props);
-        
-    }
-
-    render(){
-        return(
-            
-        );
-    }
+const PostContainer = props => {
+    return(
+        <CommentsSection comments={props.post.comments} />
+    );
 }
 
 export default PostContainer;
