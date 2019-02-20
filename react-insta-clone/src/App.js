@@ -34,6 +34,16 @@ class App extends Component {
     });
   }
   
+  searchPosts = (e, searchValue) => {
+    e.preventDefault();
+
+    this.state.posts.filter(post => post.username.includes(searchValue));
+
+    this.setState({
+      ...this.state,
+      posts: this.state.posts
+    })
+  }
 
   render() {
     const containers = this.state.posts.map(post => {
@@ -41,7 +51,7 @@ class App extends Component {
     })
     return (
       <div className="App">
-      <SearchBar />
+      <SearchBar posts={this.state.posts} searchPosts={this.searchPosts} />
         {containers}
       </div>
     );

@@ -5,7 +5,13 @@ import camera from "../../Images/searchBarCamera.svg";
 
 import { Nav, NavItem, NavLink } from 'reactstrap';
 
-const SearchBar = () => {
+const SearchBar = props => {
+    const [search, setSearchedPosts] = useState(props.posts);
+
+    handleChanges = e => {
+        setSearchedPosts(e.target.value)
+    }
+
     return(
         <div className="navbar">
             <div className="leftNav">
@@ -13,7 +19,15 @@ const SearchBar = () => {
                 <h1>Instagram</h1>
             </div>
             
-            <input id="navSearch" type="text" placeholder="Search" />
+            <form onSubmit={e => props.newSearch(e, e.target.value) }>
+                <input 
+                    id="navSearch" 
+                    type="text" 
+                    placeholder="Search"
+                    value={search}
+                    onChange={e => handleChanges(e)}
+                />
+            </form>
 
             <div className="rightNav">
                 <img src={require("../../Images/searchBarEye.svg")} />
