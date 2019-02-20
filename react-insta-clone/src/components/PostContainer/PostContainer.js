@@ -1,8 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "./PostContainer.scss";
 import CommentsSection from '../CommentsSection/CommentsSection';
 
 const PostContainer = props => {
+    const [newComment, setNewComment] = useState("");
+    const [likes, setLikes] = useState(props.post.likes);
+
+    const changeHandler = e => {
+        setNewComment(e.target.value)
+    }
+
     return(
         <div className="post">
             <div className="postHeading">
@@ -13,7 +20,10 @@ const PostContainer = props => {
             <img src={props.post.imageUrl} />
 
             <div className="icons">
-                <img src={require("../../Images/searchBarHeart.svg")} />
+                <img 
+                    onClick={() => setLikes(prevState => prevState+1)}
+                    src={require("../../Images/searchBarHeart.svg")} 
+                />
                 <img src={require("../../Images/postSpeechBubble.svg")} />
             </div>
 
@@ -21,7 +31,14 @@ const PostContainer = props => {
 
             <CommentsSection comments={props.post.comments} />
 
-            <input type="text" placeholder="Add a comment..." />
+            <form onSubmit={e => props.addNewComment(e, props.post.timestamp, newComment)}>
+                <input 
+                    type="text" 
+                    placeholder="Add a comment..."
+                    value={newComment}
+                    onChange={changeHandler}
+                />
+            </form>
         </div>
     );
 }
