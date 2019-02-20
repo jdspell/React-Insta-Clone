@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.scss';
 
+import PostsPage from "./components/PostContainer/PostsPage";
 import dummyData from "./dummy-data";
-import PostContainer from './components/PostContainer/PostContainer';
 import SearchBar from './components/SearchBar/SearchBar';
 
 class App extends Component {
@@ -47,14 +47,10 @@ class App extends Component {
   render() {
     const filteredPosts = this.state.posts.filter(post => post.username.includes(this.state.search));
 
-    const containers = filteredPosts.map((post, index) => {
-      return <PostContainer key={index} post={post} addNewComment={this.addNewComment} />
-    })
-    
     return (
       <div className="App">
-      <SearchBar posts={this.state.posts} searchPosts={this.searchPosts} />
-        {containers}
+        <SearchBar posts={this.state.posts} searchPosts={this.searchPosts} />
+        <PostsPage filteredPosts={filteredPosts}/>
       </div>
     );
   }
