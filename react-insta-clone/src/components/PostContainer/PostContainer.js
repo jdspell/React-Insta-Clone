@@ -6,10 +6,6 @@ const PostContainer = props => {
     const [newComment, setNewComment] = useState("");
     const [likes, setLikes] = useState(props.post.likes);
 
-    const changeHandler = e => {
-        setNewComment(e.target.value)
-    }
-
     return(
         <div className="post">
             <div className="postHeading">
@@ -27,16 +23,19 @@ const PostContainer = props => {
                 <img src={require("../../Images/postSpeechBubble.svg")} />
             </div>
 
-            <div className="likes"><strong>{props.post.likes} likes</strong></div>
+            <div className="likes"><strong>{likes} likes</strong></div>
 
             <CommentsSection comments={props.post.comments} />
 
-            <form onSubmit={e => props.addNewComment(e, props.post.timestamp, newComment)}>
+            <form onSubmit={e => {
+                props.addNewComment(e, props.post.timestamp, newComment)
+                setNewComment("")
+                }}>
                 <input 
                     type="text" 
                     placeholder="Add a comment..."
                     value={newComment}
-                    onChange={changeHandler}
+                    onChange={e => setNewComment(e.target.value)}
                 />
             </form>
         </div>

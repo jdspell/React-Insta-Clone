@@ -33,6 +33,7 @@ class App extends Component {
       posts: this.state.posts
     });
   }
+  
 
   render() {
     const containers = this.state.posts.map(post => {
