@@ -9,18 +9,19 @@ const PostContainer = props => {
     return(
         <div className="post">
             <div className="postHeading">
-                <img src={props.post.thumbnailUrl} /> 
+                <img src={props.post.thumbnailUrl} alt="User Thumbnail" /> 
                 <strong> {props.post.username}</strong>
             </div>
 
-            <img src={props.post.imageUrl} />
+            <img src={props.post.imageUrl} alt="User Post Content" />
 
             <div className="icons">
                 <img 
                     onClick={() => setLikes(prevState => prevState+1)}
-                    src={require("../../Images/searchBarHeart.svg")} 
+                    src={require("../../Images/searchBarHeart.svg")}
+                    alt="Heart Icon"
                 />
-                <img src={require("../../Images/postSpeechBubble.svg")} />
+                <img src={require("../../Images/postSpeechBubble.svg")} alt="Speech Bubble Icon" />
             </div>
 
             <div className="likes"><strong>{likes} likes</strong></div>

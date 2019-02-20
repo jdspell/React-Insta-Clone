@@ -9,7 +9,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      posts: []
+      posts: [],
+      search: "",
     };
   }
 
@@ -37,18 +38,19 @@ class App extends Component {
   searchPosts = (e, searchValue) => {
     e.preventDefault();
 
-    this.state.posts.filter(post => post.username.includes(searchValue));
-
     this.setState({
       ...this.state,
-      posts: this.state.posts
+      search: searchValue
     })
   }
 
   render() {
-    const containers = this.state.posts.map(post => {
-      return <PostContainer post={post} addNewComment={this.addNewComment} />
+    const filteredPosts = this.state.posts.filter(post => post.username.includes(this.state.search));
+
+    const containers = filteredPosts.map((post, index) => {
+      return <PostContainer key={index} post={post} addNewComment={this.addNewComment} />
     })
+    
     return (
       <div className="App">
       <SearchBar posts={this.state.posts} searchPosts={this.searchPosts} />

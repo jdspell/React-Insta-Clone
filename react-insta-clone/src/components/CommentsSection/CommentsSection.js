@@ -6,8 +6,8 @@ const CommentsSection = props => {
     return(
         // <h2>hello h2</h2>
         <div className="commentsSection">
-            {props.comments.map(comment => 
-            <Comments username={comment.username} text={comment.text} />
+            {props.comments.map((comment, index) => 
+            <Comments key={index} username={comment.username} text={comment.text} />
         )}
         </div>
     );
