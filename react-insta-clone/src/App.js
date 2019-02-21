@@ -1,28 +1,22 @@
 import React, { Component } from 'react';
 import './App.scss';
 
-import dummyData from "./dummy-data";
-import PostContainer from './components/PostContainer/PostContainer';
-import SearchBar from './components/SearchBar/SearchBar';
+import PostsPage from "./components/PostContainer/PostsPage";
+import withAuthenticate from "./components/authentication/authenticate";
+import Login from './components/Login/Login';
+
+const ComponentFromWithAuthenticate = withAuthenticate(PostsPage)(Login);
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      posts: dummyData
-    };
-  }
+
   render() {
-    const containers = this.state.posts.map(post => {
-      return <PostContainer post={post}/>
-    })
     return (
       <div className="App">
-      <SearchBar />
-        {containers}
+        <ComponentFromWithAuthenticate />
       </div>
     );
   }
 }
+
 
 export default App;

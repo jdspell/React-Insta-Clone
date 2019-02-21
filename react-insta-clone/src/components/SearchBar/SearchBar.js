@@ -1,24 +1,30 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './SearchBar.scss';
 
-import camera from "../../Images/searchBarCamera.svg";
+const SearchBar = props => {
+    const [search, setSearch] = useState("");
 
-import { Nav, NavItem, NavLink } from 'reactstrap';
-
-const SearchBar = () => {
     return(
         <div className="navbar">
             <div className="leftNav">
-                <img src={require("../../Images/searchBarCamera.svg")} />
+                <img src={require("../../Images/searchBarCamera.svg")} alt="Camera Icon" />
                 <h1>Instagram</h1>
             </div>
             
-            <input id="navSearch" type="text" placeholder="Search" />
+            <form onSubmit={e => props.searchPosts(e, search)}>
+                <input 
+                    id="navSearch" 
+                    type="text" 
+                    placeholder="Search"
+                    value={search}
+                    onChange = {e => setSearch(e.target.value)}
+                />
+            </form>
 
             <div className="rightNav">
-                <img src={require("../../Images/searchBarEye.svg")} />
-                <img src={require("../../Images/searchBarHeart.svg")} />
-                <img src={require("../../Images/searchBarPerson.svg")} />
+                <img src={require("../../Images/searchBarEye.svg")} alt="Eye Icon" />
+                <img src={require("../../Images/searchBarHeart.svg") } alt="Heart Icon" />
+                <img src={require("../../Images/searchBarPerson.svg")} alt="Person Icon" />
             </div>
         </div>
     );
