@@ -12,11 +12,17 @@ const withAuthenticate = PostsPage => Login =>
         componentDidMount(){
             if(localStorage.getItem('user')) {
                 this.setState({ loggedIn: true})
+            } else {
+                this.setState({loggedIn: false})
             }
         }
 
         render(){
-            {this.state.loggedIn ? <PostsPage /> : <Login />}
+            {if(this.state.loggedIn){
+                return <PostsPage />
+            } else {
+                return <Login />
+            }}
         }
     };
 

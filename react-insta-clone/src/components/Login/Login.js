@@ -21,17 +21,17 @@ export default class Login extends React.Component {
                 <form>
                     <input 
                         type="text" 
-                        placeholder="Username"
+                        placeholder="User Name"
                         value={this.state.user}
-                        name="username"
+                        name="user"
                         onChange={this.handleChanges}
                     />
                     
                     <input 
                         type="text" 
-                        placeholder="Username"
+                        placeholder="Password"
                         value={this.state.password}
-                        name="username"
+                        name="password"
                         onChange={this.handleChanges}
                     />
                     <button onClick={this.signIn}>Login</button>
